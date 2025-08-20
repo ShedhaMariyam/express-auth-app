@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <link rel="stylesheet"  type="text/css " href ="/styles/userlogin.css">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+<!--ring div starts here-->
+ <form method="post" action="/user/login">
+<div class="ring">
+ 
+ 
+  <div class="login">
+    <h2>Login</h2>
+    <input type="text" id="message" value="{{{message}}}" name="message" hidden>
+    <div class="inputBx">
+      <input id="email" type="email" placeholder="Email" name="email"  >
+    </div>
+    <div class="inputBx">
+      <input id="Password" type="password" placeholder="Password" name="Password"  >
+    </div>
+    
+    <div class="inputBx">
+      <button type="submit" >Sign in</button>
+    </div>
+    
+  </div>
+</div></form>
+<!--ring div ends here-->
+
+<script>
+
+  document.addEventListener('DOMContentLoaded',function(){
+
+    
+  const message = document.getElementById('message').value
+
+  if (message)
+  {
+    swal(message)
+  }
+  document.querySelector('form').addEventListener('submit',formValidate);
+
+
+  });
+
+  function formValidate(e){
+    e.preventDefault();
+
+    var email = document.getElementById("email").value;
+    var Password = document.getElementById("Password").value;
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      if(email=="" || Password=="")
+      {
+        swal("All fields are mandatory");
+        return false;
+      }else if (!emailPattern.test(email)) {
+           swal("Enter a valid email address");
+           return false;
+          }
+    
+      e.target.submit();
+      return true;
+   }
+
+</script>
+</body>
+</html>
+
+
+

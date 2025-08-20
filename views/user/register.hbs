@@ -1,0 +1,71 @@
+<link  rel="stylesheet" href="/styles/userlogin.css" >
+<!--ring div starts here-->
+<form  action="/user/register"   method="post">
+<div class="ring">
+
+  <div class="login">
+    <h2>Register</h2>
+      <input type="text" id="message" value="{{{message}}}"  hidden>
+    <div class="inputBx">
+      <input id="name" type="text" placeholder="Name" name="name" >
+    </div>
+    <div class="inputBx">
+      <input id="email" type="email" placeholder="Email" name="email" >
+    </div>
+    <div class="inputBx">
+      <input id="Password" type="password" placeholder="Password" name="Password"  >
+    </div>
+    <div class="inputBx">
+      <input id="ConfirmPassword" type="password" placeholder= "Confirm Password" name="ConfirmPassword" >
+    </div>
+    <div class="inputBx">
+      <button type="submit" > Register </button>
+    </div>
+  </div>
+</div></form>
+<!--ring div ends here-->
+
+
+<script>
+
+  document.addEventListener('DOMContentLoaded',function(){
+      const message = document.getElementById("message").value;
+
+  if (message)
+  {
+    console.log(message)
+    swal(message)
+  }
+    document.querySelector('form').addEventListener('submit',formValidate)
+    });
+    
+    function formValidate(e){
+    e.preventDefault();
+
+    var name=document.getElementById("name").value
+    var email = document.getElementById("email").value;
+    var Password = document.getElementById("Password").value;
+    var ConfirmPassword = document.getElementById("ConfirmPassword").value;
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      if(name=="" || email=="" || Password=="" || ConfirmPassword=="")
+      {
+        swal("All fields are mandatory");
+        return false;
+      } else if (!emailPattern.test(email)) {
+           swal("Enter a valid email address");
+           return false;
+          }
+      else if(Password != ConfirmPassword){
+        swal("Passwords do not match");
+        return false;
+      }
+      e.target.submit();
+      return true;
+   }
+
+  
+   
+  
+
+</script>
